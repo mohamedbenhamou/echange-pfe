@@ -1,0 +1,1379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="53d631c6-a0cc-47be-903f-a8961f76d215" activeEnvironment="Default" name="soapAPImock" resourceRoot="" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="13e10e23-451b-442b-a397-0118b2cdef94" wsaVersion="NONE" name="getCustomerDetailBinding" type="wsdl" bindingName="{http://soprabanking.com/amplitude}getCustomerDetailBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/exe/Downloads/JDD/getCustomerDetail.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\exe\Downloads\JDD\getCustomerDetail.xml"><con:part><con:url>file:\C:\Users\exe\Downloads\JDD\getCustomerDetail.xml</con:url><con:content><![CDATA[<wsdl:definitions name="getCustomerDetail" targetNamespace="http://soprabanking.com/amplitude" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:fjs="http://soprabanking.com/amplitude" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://soprabanking.com/amplitude" xmlns:s1="http://soprabanking.com/amplitude">
+      <xsd:simpleType name="charMax50">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="50"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="charMax10">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char3">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="charMax30">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="30"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="language">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:char3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="responseHeader">
+        <xsd:sequence>
+          <xsd:element name="requestId" type="s1:charMax50"/>
+          <xsd:element name="responseId" type="s1:charMax50"/>
+          <xsd:element type="xsd:dateTime" name="timestamp"/>
+          <xsd:element name="serviceVersion" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="language" type="s1:language"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="statusCodeType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="-1"/>
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="responseMessageNature">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="ERROR"/>
+          <xsd:enumeration value="INFO"/>
+          <xsd:enumeration value="WARNING"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="char6">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="6"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="errorInformation">
+        <xsd:sequence>
+          <xsd:element type="xsd:string" name="errorCode" minOccurs="0"/>
+          <xsd:element type="xsd:string" name="convertedCode" minOccurs="0"/>
+          <xsd:element type="xsd:string" name="errorMessage" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="responseStatusMessage">
+        <xsd:sequence>
+          <xsd:element name="nature" type="s1:responseMessageNature"/>
+          <xsd:element name="code" type="s1:char6"/>
+          <xsd:element type="xsd:string" name="line" maxOccurs="unbounded" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="errorInformation" type="s1:errorInformation"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="responseStatusMessages">
+        <xsd:sequence>
+          <xsd:element name="message" type="s1:responseStatusMessage" maxOccurs="unbounded" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="responseStatus">
+        <xsd:sequence>
+          <xsd:element name="statusCode" type="s1:statusCodeType"/>
+          <xsd:element minOccurs="0" name="messages" type="s1:responseStatusMessages"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="errorResponseFlow">
+        <xsd:sequence>
+          <xsd:element name="responseHeader" type="s1:responseHeader"/>
+          <xsd:element name="responseStatus" type="s1:responseStatus"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="errorResponseFlow" type="s1:errorResponseFlow"/>
+      <xsd:complexType name="getStatusRequestFlow">
+        <xsd:sequence>
+          <xsd:element type="xsd:string" name="getStatusRequest"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getStatusRequestFlow" type="s1:getStatusRequestFlow"/>
+      <xsd:complexType name="getStatusResponse">
+        <xsd:sequence>
+          <xsd:element type="xsd:dateTime" name="timeStamp"/>
+          <xsd:element name="serviceName" type="s1:charMax50"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getStatusResponseFlow">
+        <xsd:sequence>
+          <xsd:element name="getStatusResponse" type="s1:getStatusResponse"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getStatusResponseFlow" type="s1:getStatusResponseFlow"/>
+      <xsd:simpleType name="languageCode">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="channelCode">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="0"/>
+          <xsd:maxLength value="6"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="requestHeader">
+        <xsd:sequence>
+          <xsd:element name="requestId" type="s1:charMax50"/>
+          <xsd:element name="serviceName" type="s1:charMax50"/>
+          <xsd:element type="xsd:dateTime" name="timestamp"/>
+          <xsd:element minOccurs="0" name="originalName" type="s1:charMax50"/>
+          <xsd:element minOccurs="0" name="originalId" type="s1:charMax50"/>
+          <xsd:element type="xsd:dateTime" name="originalTimestamp" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="languageCode" type="s1:languageCode"/>
+          <xsd:element name="userCode" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="channelCode" type="s1:channelCode"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="charMax15">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="15"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="customerIdentifier">
+        <xsd:sequence>
+          <xsd:element name="customerCode" type="s1:charMax15"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCustomerDetailRequest">
+        <xsd:sequence>
+          <xsd:element name="customerIdentifier" type="s1:customerIdentifier"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCustomerDetailRequestFlow">
+        <xsd:sequence>
+          <xsd:element name="requestHeader" type="s1:requestHeader"/>
+          <xsd:element name="getCustomerDetailRequest" type="s1:getCustomerDetailRequest"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getCustomerDetailRequestFlow" type="s1:getCustomerDetailRequestFlow"/>
+      <xsd:simpleType name="customerType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="1"/>
+          <xsd:enumeration value="2"/>
+          <xsd:enumeration value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="charMax2">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="2"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="titleCode">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax2"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="charMax36">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="36"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="charMax67">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="67"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="charMax20">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="20"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="customerFreeField1">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerFreeField2">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerFreeField3">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="charMax25">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="25"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="charMax3">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="nationality">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="country">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="legalSituation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerSituation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="nationalityCode" type="s1:nationality"/>
+          <xsd:element minOccurs="0" name="countryOfResidence" type="s1:country"/>
+          <xsd:element minOccurs="0" name="legalSituation" type="s1:legalSituation"/>
+          <xsd:element type="xsd:date" name="applicationDateOflegalSituation" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="fatcaStatusCode">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="fatcaStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="fatcaStatusCode" type="s1:fatcaStatusCode"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="char1">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="1"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="user">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="name" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="forcingLevel" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="language" type="s1:language"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="crsStatusCode">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="10"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="crsStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="crsStatusCode" type="s1:crsStatusCode"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerFatca">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="fatcaStatus" type="s1:fatcaStatus"/>
+          <xsd:element type="xsd:date" name="fatcaStatusDate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="fatcaStatusUpdateUser" type="s1:user"/>
+          <xsd:element minOccurs="0" name="crsStatus" type="s1:crsStatus"/>
+          <xsd:element type="xsd:date" name="crsStatusDate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="crsStatusUpdateUser" type="s1:user"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="familyStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="marriageSettlement">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="legalCapacity">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerRealEstateSituation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerIndividualGeneralInfo">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="firstname" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="middlename" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="thirdname" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="familyStatusCode" type="s1:familyStatus"/>
+          <xsd:element minOccurs="0" name="marriageSettlementCode" type="s1:marriageSettlement"/>
+          <xsd:element minOccurs="0" name="holderLegalCapacity" type="s1:legalCapacity"/>
+          <xsd:element type="xsd:date" name="applicationDateOflegalCapacity" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="RealEstateSituationCode" type="s1:customerRealEstateSituation"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="sex">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value=" "/>
+          <xsd:enumeration value="F"/>
+          <xsd:enumeration value="M"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="charMax6">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="6"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="customerBirth">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="holderSex" type="s1:sex"/>
+          <xsd:element minOccurs="0" name="maidenName" type="s1:charMax36"/>
+          <xsd:element type="xsd:date" name="birthDate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="birthCity" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="birthCounty" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="birthRegion" type="s1:charMax50"/>
+          <xsd:element minOccurs="0" name="birthCountry" type="s1:country"/>
+          <xsd:element minOccurs="0" name="birthTownCode" type="s1:charMax6"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="charMax5">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="5"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="idPaperType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax5"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerIdPaper">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="type" type="s1:idPaperType"/>
+          <xsd:element minOccurs="0" name="idPaperNumber" type="s1:charMax20"/>
+          <xsd:element type="xsd:date" name="idPaperDeliveryDate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="idPaperDeliveryPlace" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="organisationWhichDeliver" type="s1:charMax30"/>
+          <xsd:element type="xsd:date" name="idPaperValidityDate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="nationalIdentifier" type="s1:charMax20"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="territorialityCode">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerTerritoriality">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="territorialityCode" type="s1:territorialityCode"/>
+          <xsd:element minOccurs="0" name="spouseTerritorialityCode" type="s1:territorialityCode"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="customerThirdPartyType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value=" "/>
+          <xsd:enumeration value="C"/>
+          <xsd:enumeration value="T"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="customerFamily">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="spouseType" type="s1:customerThirdPartyType"/>
+          <xsd:element minOccurs="0" name="spouseCode" type="s1:charMax15"/>
+          <xsd:element type="xsd:int" name="numberOfChildren" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="customerFamilyRelationshipCode" type="s1:charMax15"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerOtherAttributes">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="holderMotherName" type="s1:charMax67"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerIndividualSpecInfo">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="individualGeneralInfo" type="s1:customerIndividualGeneralInfo"/>
+          <xsd:element minOccurs="0" name="birth" type="s1:customerBirth"/>
+          <xsd:element minOccurs="0" name="idPaper" type="s1:customerIdPaper"/>
+          <xsd:element minOccurs="0" name="territoriality" type="s1:customerTerritoriality"/>
+          <xsd:element minOccurs="0" name="family" type="s1:customerFamily"/>
+          <xsd:element minOccurs="0" name="otherAttributes" type="s1:customerOtherAttributes"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="charMax65">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="65"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="legalForm">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax2"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerCorporateGeneralInfo">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="tradeNameToDeclare" type="s1:charMax65"/>
+          <xsd:element minOccurs="0" name="secondTradeNameToDeclare" type="s1:charMax65"/>
+          <xsd:element type="xsd:date" name="companyCreationDate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="legalFormCode" type="s1:legalForm"/>
+          <xsd:element minOccurs="0" name="statutoryAuditor1" type="s1:charMax36"/>
+          <xsd:element minOccurs="0" name="statutoryAuditor2" type="s1:charMax36"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerCorporateId">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="nationalIdentifier" type="s1:charMax20"/>
+          <xsd:element minOccurs="0" name="socialIdentityNumber" type="s1:charMax20"/>
+          <xsd:element minOccurs="0" name="taxIdentityNumber" type="s1:charMax20"/>
+          <xsd:element minOccurs="0" name="abbreviation" type="s1:charMax20"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="chamberOfCommerce">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerLegalInformation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="tradeRegisterNumber" type="s1:charMax20"/>
+          <xsd:element type="xsd:date" name="deliveryDateOfTradeRegister" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="tradeRegisterDeliveryPlace" type="s1:charMax30"/>
+          <xsd:element type="xsd:date" name="validityDateOfTradeRegister" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="chamberOfCommerceCode" type="s1:chamberOfCommerce"/>
+          <xsd:element minOccurs="0" name="licenseNumber" type="s1:charMax20"/>
+          <xsd:element type="xsd:date" name="validityDateOfLicense" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customersGroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax6"/>
+          <xsd:element minOccurs="0" name="name" type="s1:charMax36"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customersSubgroup">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="customersGroupCode" type="s1:charMax6"/>
+          <xsd:element minOccurs="0" name="customersSubgroupCode" type="s1:charMax6"/>
+          <xsd:element minOccurs="0" name="customersSubgroupName" type="s1:charMax36"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerJob">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="jobCode" type="s1:charMax6"/>
+          <xsd:element minOccurs="0" name="jobName" type="s1:charMax36"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerSubjob">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="jobCode" type="s1:charMax6"/>
+          <xsd:element minOccurs="0" name="subjobCode" type="s1:charMax6"/>
+          <xsd:element minOccurs="0" name="subjobName" type="s1:charMax36"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerGroupAndJob">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="customersGroup" type="s1:customersGroup"/>
+          <xsd:element minOccurs="0" name="subgroup" type="s1:customersSubgroup"/>
+          <xsd:element minOccurs="0" name="job" type="s1:customerJob"/>
+          <xsd:element minOccurs="0" name="subjob" type="s1:customerSubjob"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerCorporateSpecInfo">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="corporateGeneralInfo" type="s1:customerCorporateGeneralInfo"/>
+          <xsd:element minOccurs="0" name="corporateId" type="s1:customerCorporateId"/>
+          <xsd:element minOccurs="0" name="legalInformation" type="s1:customerLegalInformation"/>
+          <xsd:element minOccurs="0" name="groupAndJob" type="s1:customerGroupAndJob"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerSpecInfo">
+        <xsd:choice>
+          <xsd:element minOccurs="0" name="individualSpecInfo" type="s1:customerIndividualSpecInfo"/>
+          <xsd:element minOccurs="0" name="corporateSpecInfo" type="s1:customerCorporateSpecInfo"/>
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:simpleType name="char5">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="5"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="branch">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:char5"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerOfficer">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="name" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerQuality">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax2"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="internalCategory">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="segment">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerGeneralAttributes">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="branchCode" type="s1:branch"/>
+          <xsd:element minOccurs="0" name="customerOfficer" type="s1:customerOfficer"/>
+          <xsd:element minOccurs="0" name="qualityCode" type="s1:customerQuality"/>
+          <xsd:element type="xsd:boolean" name="taxableCustomer" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="internalCategoryCode" type="s1:internalCategory"/>
+          <xsd:element minOccurs="0" name="segment" type="s1:segment"/>
+          <xsd:element minOccurs="0" name="statisticNumber" type="s1:charMax20"/>
+          <xsd:element minOccurs="0" name="sponsorCustomerCode" type="s1:charMax15"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="declaredHome">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="charMax4">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="4"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="centralBankCategory">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax4"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerActivityField">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax5"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="relationshipWithTheBank">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="decimal19_4">
+        <xsd:restriction base="xsd:decimal">
+          <xsd:totalDigits value="19"/>
+          <xsd:fractionDigits value="4"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="customerRelationshipRiskLevel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="creditInfoCentreCodeToDeclare">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="1"/>
+          <xsd:enumeration value=" "/>
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+          <xsd:enumeration value="2"/>
+          <xsd:enumeration value="5"/>
+          <xsd:enumeration value="9"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="customerCreditInfoCentre">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="customerRelationshipRisk" type="s1:customerRelationshipRiskLevel"/>
+          <xsd:element type="xsd:date" name="validationDateOfCustomerRelationshipRisk" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="userCodewhoValidatedcustomerRelationshipRisk" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="creditInfoCentreRegistrationNumber" type="s1:charMax20"/>
+          <xsd:element minOccurs="0" name="creditInfoCentreCodeToDeclare" type="s1:creditInfoCentreCodeToDeclare"/>
+          <xsd:element minOccurs="0" name="creditInfoCentreKey" type="s1:char1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerReportingAttributes">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="declaredHome" type="s1:declaredHome"/>
+          <xsd:element minOccurs="0" name="economicAgentCode" type="s1:centralBankCategory"/>
+          <xsd:element minOccurs="0" name="activityFieldCode" type="s1:customerActivityField"/>
+          <xsd:element minOccurs="0" name="relationshipWithTheBank" type="s1:relationshipWithTheBank"/>
+          <xsd:element minOccurs="0" name="gradingAgreement" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="gradingAgreementAmount" type="s1:decimal19_4"/>
+          <xsd:element minOccurs="0" name="securityIssuer" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="internationalOperationsIndicator" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="creditInfoCentre" type="s1:customerCreditInfoCentre"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerPaymentMethods">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="chequeBookFacilitySuspension" type="s1:char1"/>
+          <xsd:element type="xsd:date" name="chequeBookFacilitySuspensionDate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="withdrawalOfCreditCard" type="s1:char1"/>
+          <xsd:element type="xsd:date" name="dateOfWithdrawalOfCreditCard" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="decimal4_0">
+        <xsd:restriction base="xsd:decimal">
+          <xsd:totalDigits value="4"/>
+          <xsd:fractionDigits value="0"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="customerAdditionalInformation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="deletionCode" type="s1:char1"/>
+          <xsd:element minOccurs="0" name="userWhoCreated" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="userWhoInitiated" type="s1:charMax10"/>
+          <xsd:element type="xsd:date" name="creationDate" minOccurs="0"/>
+          <xsd:element type="xsd:date" name="lastModificationDate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="modificationSheetNumber" type="s1:decimal4_0"/>
+          <xsd:element minOccurs="0" name="realTimeTransferCode" type="s1:char1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="addressType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax2"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerAddressDetailIdentifier">
+        <xsd:sequence>
+          <xsd:element name="customerCode" type="s1:charMax15"/>
+          <xsd:element name="addressType" type="s1:addressType"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="addressFormat">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax2"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="charMax9">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="9"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="service">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax4"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="typeOfTransport">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerAddressDetail">
+        <xsd:sequence>
+          <xsd:element name="identifier" type="s1:customerAddressDetailIdentifier"/>
+          <xsd:element minOccurs="0" name="language" type="s1:language"/>
+          <xsd:element minOccurs="0" name="addressFormat" type="s1:addressFormat"/>
+          <xsd:element minOccurs="0" name="addressLine1" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="addressLine2" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="addressLine3" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="city" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="postalCode" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="deliveryOffice" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="poBox" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="postalSector" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="postalSectorDesignation" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="countryCode" type="s1:country"/>
+          <xsd:element minOccurs="0" name="counterCode" type="s1:branch"/>
+          <xsd:element minOccurs="0" name="locker" type="s1:charMax9"/>
+          <xsd:element minOccurs="0" name="service" type="s1:service"/>
+          <xsd:element minOccurs="0" name="typeOfTransportCode" type="s1:typeOfTransport"/>
+          <xsd:element minOccurs="0" name="emailAddress" type="s1:charMax50"/>
+          <xsd:element type="xsd:date" name="startingDateOfTemporaryAddress" minOccurs="0"/>
+          <xsd:element type="xsd:date" name="endingDateOfTemporaryAddress" minOccurs="0"/>
+          <xsd:element type="xsd:int" name="numberOfReturnMailsForWrongAddress" minOccurs="0"/>
+          <xsd:element type="xsd:date" name="dateOfFirstReturnMailForWrongAddress" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="county" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="region" type="s1:charMax50"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCustomerAddressDetailResponse">
+        <xsd:sequence>
+          <xsd:element name="customerAddressDetail" type="s1:customerAddressDetail" maxOccurs="unbounded" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="restrictedCustomer">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="customerNumber" type="s1:charMax15"/>
+          <xsd:element minOccurs="0" name="displayedName" type="s1:charMax67"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="phoneType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="formatOfTelephoneNumber">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerPhoneNumber">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="customer" type="s1:restrictedCustomer"/>
+          <xsd:element minOccurs="0" name="phoneType" type="s1:phoneType"/>
+          <xsd:element name="phoneNumber" type="s1:charMax20"/>
+          <xsd:element minOccurs="0" name="formatOfTelephoneNumber" type="s1:formatOfTelephoneNumber"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCustomerPhoneNumberListResponse">
+        <xsd:sequence>
+          <xsd:element name="customerPhoneNumber" type="s1:customerPhoneNumber" maxOccurs="unbounded" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="mailType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerEmailAddress">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="customer" type="s1:restrictedCustomer"/>
+          <xsd:element minOccurs="0" name="mailType" type="s1:mailType"/>
+          <xsd:element name="email" type="s1:charMax50"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCustomerEmailAddressListResponse">
+        <xsd:sequence>
+          <xsd:element name="customerEmailAddress" type="s1:customerEmailAddress" maxOccurs="unbounded" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerFreeAttributeDetailIdentifier">
+        <xsd:sequence>
+          <xsd:element name="customerCode" type="s1:charMax15"/>
+          <xsd:element name="identifier" type="s1:charMax10"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="charMax40">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="40"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="decimal22_7">
+        <xsd:restriction base="xsd:decimal">
+          <xsd:totalDigits value="22"/>
+          <xsd:fractionDigits value="7"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="additionalDataValue">
+        <xsd:choice>
+          <xsd:element minOccurs="0" name="alphanumeric" type="s1:charMax40"/>
+          <xsd:element minOccurs="0" name="amountOrRate" type="s1:decimal22_7"/>
+          <xsd:element type="xsd:date" name="date" minOccurs="0"/>
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:simpleType name="typeOfAttribute">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="F"/>
+          <xsd:enumeration value="G"/>
+          <xsd:enumeration value="M"/>
+          <xsd:enumeration value="N"/>
+          <xsd:enumeration value="R"/>
+          <xsd:enumeration value="S"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="charMax255">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1"/>
+          <xsd:maxLength value="255"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="freeAttributeFormat">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="A"/>
+          <xsd:enumeration value="D"/>
+          <xsd:enumeration value="M"/>
+          <xsd:enumeration value="T"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="additionalDataManagementMethod">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="1"/>
+          <xsd:enumeration value="0"/>
+          <xsd:enumeration value="1"/>
+          <xsd:enumeration value="2"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="customerFreeAttributeInfo">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax10"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+          <xsd:element minOccurs="0" name="dataFormat" type="s1:freeAttributeFormat"/>
+          <xsd:element type="xsd:int" name="totalLengthIfAlpha" minOccurs="0"/>
+          <xsd:element type="xsd:int" name="numberOfDecimalsIfAmountOrRate" minOccurs="0"/>
+          <xsd:element minOccurs="0" name="managementMethod" type="s1:additionalDataManagementMethod"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerFreeAttributeDetail">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="customerFreeAttributeIdentifier" type="s1:customerFreeAttributeDetailIdentifier"/>
+          <xsd:element minOccurs="0" name="additionalDataValue" type="s1:additionalDataValue"/>
+          <xsd:element minOccurs="0" name="typeOfLinkedAttribute" type="s1:typeOfAttribute"/>
+          <xsd:element minOccurs="0" name="freeText" type="s1:charMax255"/>
+          <xsd:element minOccurs="0" name="customerFreeAttributeInfo" type="s1:customerFreeAttributeInfo"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerFreeAttributesDetail">
+        <xsd:sequence>
+          <xsd:element name="customerFreeAttributeDetail" type="s1:customerFreeAttributeDetail" maxOccurs="unbounded" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="customerProfile">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" type="s1:charMax3"/>
+          <xsd:element minOccurs="0" name="designation" type="s1:charMax30"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCustomerActiveProfileResponse">
+        <xsd:sequence>
+          <xsd:element name="activeProfile" type="s1:customerProfile"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCustomerDetailResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="customerCode" type="s1:charMax15"/>
+          <xsd:element minOccurs="0" name="customerType" type="s1:customerType"/>
+          <xsd:element minOccurs="0" name="language" type="s1:language"/>
+          <xsd:element minOccurs="0" name="titleCode" type="s1:titleCode"/>
+          <xsd:element minOccurs="0" name="lastname" type="s1:charMax36"/>
+          <xsd:element minOccurs="0" name="nameToReturn" type="s1:charMax67"/>
+          <xsd:element minOccurs="0" name="abbreviation" type="s1:charMax20"/>
+          <xsd:element minOccurs="0" name="freeFieldCode1" type="s1:customerFreeField1"/>
+          <xsd:element minOccurs="0" name="freeFieldCode2" type="s1:customerFreeField2"/>
+          <xsd:element minOccurs="0" name="freeFieldCode3" type="s1:customerFreeField3"/>
+          <xsd:element minOccurs="0" name="externalIdentifier" type="s1:charMax25"/>
+          <xsd:element minOccurs="0" name="situation" type="s1:customerSituation"/>
+          <xsd:element minOccurs="0" name="fatca" type="s1:customerFatca"/>
+          <xsd:element minOccurs="0" name="specificInformation" type="s1:customerSpecInfo"/>
+          <xsd:element minOccurs="0" name="generalAttributes" type="s1:customerGeneralAttributes"/>
+          <xsd:element minOccurs="0" name="reportingAttributes" type="s1:customerReportingAttributes"/>
+          <xsd:element minOccurs="0" name="paymentMethods" type="s1:customerPaymentMethods"/>
+          <xsd:element minOccurs="0" name="additionnalInformation" type="s1:customerAdditionalInformation"/>
+          <xsd:element minOccurs="0" name="addressesDetail" type="s1:getCustomerAddressDetailResponse"/>
+          <xsd:element minOccurs="0" name="phoneNumbers" type="s1:getCustomerPhoneNumberListResponse"/>
+          <xsd:element minOccurs="0" name="emailAdresses" type="s1:getCustomerEmailAddressListResponse"/>
+          <xsd:element minOccurs="0" name="freeAttributesDetail" type="s1:customerFreeAttributesDetail"/>
+          <xsd:element minOccurs="0" name="activeProfile" type="s1:getCustomerActiveProfileResponse"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="getCustomerDetailResponseFlow">
+        <xsd:sequence>
+          <xsd:element name="responseHeader" type="s1:responseHeader"/>
+          <xsd:element name="responseStatus" type="s1:responseStatus"/>
+          <xsd:element minOccurs="0" name="getCustomerDetailResponse" type="s1:getCustomerDetailResponse"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getCustomerDetailResponseFlow" type="s1:getCustomerDetailResponseFlow"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="errorResponseFlow">
+    <wsdl:part name="errorResponseFlow" element="fjs:errorResponseFlow"/>
+  </wsdl:message>
+  <wsdl:message name="getStatusIn">
+    <wsdl:part name="parameters" element="fjs:getStatusRequestFlow"/>
+  </wsdl:message>
+  <wsdl:message name="getStatusOut">
+    <wsdl:part name="parameters" element="fjs:getStatusResponseFlow"/>
+  </wsdl:message>
+  <wsdl:message name="getCustomerDetailIn">
+    <wsdl:part name="parameters" element="fjs:getCustomerDetailRequestFlow"/>
+  </wsdl:message>
+  <wsdl:message name="getCustomerDetailOut">
+    <wsdl:part name="parameters" element="fjs:getCustomerDetailResponseFlow"/>
+  </wsdl:message>
+  <wsdl:portType name="getCustomerDetailPortType">
+    <wsdl:operation name="getStatus">
+      <wsdl:input message="fjs:getStatusIn" name="getStatusRequestFlow"/>
+      <wsdl:output message="fjs:getStatusOut" name="getStatusResponseFlow"/>
+      <wsdl:fault message="fjs:errorResponseFlow" name="errorResponseFlow"/>
+    </wsdl:operation>
+    <wsdl:operation name="getCustomerDetail">
+      <wsdl:input message="fjs:getCustomerDetailIn" name="getCustomerDetailRequestFlow"/>
+      <wsdl:output message="fjs:getCustomerDetailOut" name="getCustomerDetailResponseFlow"/>
+      <wsdl:fault message="fjs:errorResponseFlow" name="errorResponseFlow"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="getCustomerDetailBinding" type="fjs:getCustomerDetailPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getStatus">
+      <soap:operation soapAction="getStatus"/>
+      <wsdl:input name="getStatusRequestFlow">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatusResponseFlow">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="errorResponseFlow">
+        <soap:fault use="literal" name="errorResponseFlow"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCustomerDetail">
+      <soap:operation soapAction="getCustomerDetail"/>
+      <wsdl:input name="getCustomerDetailRequestFlow">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCustomerDetailResponseFlow">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="errorResponseFlow">
+        <soap:fault use="literal" name="errorResponseFlow"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="getCustomerDetail">
+    <wsdl:port binding="fjs:getCustomerDetailBinding" name="getCustomerDetailPortType">
+      <soap:address location="http://172.35.0.8/gas/ws/r/smgBPMC/getCustomerDetail/getCustomerDetail"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://172.35.0.8/gas/ws/r/smgBPMC/getCustomerDetail/getCustomerDetail</con:endpoint><con:endpoint>http://DESKTOP-MH8NEP8:8088/mockgetCustomerDetailBinding</con:endpoint></con:endpoints><con:operation id="41525892-e59b-438f-8ac9-dc0bd665ecee" isOneWay="false" action="getCustomerDetail" name="getCustomerDetail" bindingOperationName="getCustomerDetail" type="Request-Response" outputName="getCustomerDetailResponseFlow" inputName="getCustomerDetailRequestFlow" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="08145753-4386-4215-8f0d-563c96ceb5d7" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockgetCustomerDetailBinding</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:amp="http://soprabanking.com/amplitude">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <amp:getCustomerDetailRequestFlow>
+         <amp:requestHeader>
+           <amp:requestId>${requestId}</amp:requestId>
+            <amp:serviceName>getCustomer</amp:serviceName>
+            <amp:timestamp>${timestamp}</amp:timestamp>
+            
+            <amp:userCode>MOHAMED<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:amp="http://soprabanking.com/amplitude">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <amp:getCustomerDetailRequestFlow>
+         <amp:requestHeader>
+           <amp:requestId>1</amp:requestId>
+            <amp:serviceName>getCustomer</amp:serviceName>
+            <amp:timestamp>2023-06-26T16:17:55.66120+01:00</amp:timestamp>
+            
+            <amp:userCode>NOHAILA</amp:userCode>
+
+         </amp:requestHeader>
+         <amp:getCustomerDetailRequest>
+            <amp:customerIdentifier>
+               <amp:customerCode>500640</amp:customerCode>
+            </amp:customerIdentifier>
+         </amp:getCustomerDetailRequest>
+      </amp:getCustomerDetailRequestFlow>
+   </soapenv:Body>
+</soapenv:Envelope></amp:userCode>
+
+         </amp:requestHeader>
+         <amp:getCustomerDetailRequest>
+            <amp:customerIdentifier>
+               <amp:customerCode>500643</amp:customerCode>
+            </amp:customerIdentifier>
+         </amp:getCustomerDetailRequest>
+      </amp:getCustomerDetailRequestFlow>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getCustomerDetail"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="0de8e7bc-4b77-4d72-977f-e22860e19ecc" isOneWay="false" action="getStatus" name="getStatus" bindingOperationName="getStatus" type="Request-Response" outputName="getStatusResponseFlow" inputName="getStatusRequestFlow" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3b25d3dd-e0d3-41d3-9126-d88b74efa28c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.35.0.8/gas/ws/r/smgBPMC/getCustomerDetail/getCustomerDetail</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:amp="http://soprabanking.com/amplitude">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <amp:getStatusRequestFlow>\r
+         <amp:getStatusRequest>?</amp:getStatusRequest>\r
+      </amp:getStatusRequestFlow>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="getStatus"/></con:call></con:operation></con:interface><con:mockService id="02ddd73e-bbac-43ad-8cf6-59842b76812b" port="8088" path="/mockgetCustomerDetailBinding" host="localhost" name="getCustomerDetailBinding MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:startScript>context.operationlogs=[]
+</con:startScript><con:properties/><con:mockOperation name="getCustomerDetail" id="8c77e303-1d8c-412d-b96b-864c1c6c9b3d" interface="getCustomerDetailBinding" operation="getCustomerDetail"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="f2fa764e-99e1-4c75-b9ee-77d7ac9d3b1c" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script>
+import javax.xml.xpath.*
+import groovy.xml.StreamingMarkupBuilder
+import groovy.lang.Binding;
+import groovy.lang.Script;
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+// Récupérer le contenu de la requête
+def requestContent = mockRequest.requestContent
+
+try {
+    // Analyser le contenu de la requête XML
+    def request = new XmlSlurper().parseText(requestContent)
+
+    // Récupérer le customerCode de la requête
+    def customerCode = request.Body.getCustomerDetailRequestFlow.getCustomerDetailRequest.customerIdentifier.customerCode.text().toLong()
+
+    // Votre dictionnaire de données
+    def dataDictionary = [
+        'langNb': ['001', '001', '002'],
+        'lang': ['Fran', 'Fran', 'Eng'],
+        'cli': ['500640', '500642', '500643'],        
+        'nom': ['NOHAILA', 'HIND', 'MOHAMED'],
+        'nametoreturn': ['rest500640', 'rest500642', 'rest500643'],       
+        'lib': ['01', '01', '03'],
+        'sext': ['Madame', 'Madame', 'Monsieur'],
+        
+    ]
+
+    // Rechercher le customerCode dans le dictionnaire et récupérer les données correspondantes
+    def index = dataDictionary['cli'].indexOf(customerCode.toString())
+
+    // Vérifier si le customerCode a été trouvé dans le dictionnaire
+    if (index != -1) {
+        // Récupérer les données correspondantes
+        def langNbValue = dataDictionary['langNb'][index]
+        def langValue = dataDictionary['lang'][index]
+        def nomValue = dataDictionary['nom'][index]
+        def nametoreturnValue = dataDictionary['nametoreturn'][index]       
+        def libValue = dataDictionary['lib'][index]
+        def sextValue = dataDictionary['sext'][index]
+        
+
+        // Définir les variables correspondantes dans le contexte SoapUI
+        context.langNb = langNbValue
+        context.lang = langValue 
+        context.cli = customerCode
+        context.nom = nomValue
+        context.nametoreturn = nametoreturnValue              
+        context.lib = libValue
+        context.sext = sextValue
+        
+    } else {
+        log.error("Le customerCode n'a pas été trouvé dans le dictionnaire.")
+    }
+} catch (Exception ex) {
+    log.error("Une erreur s'est produite : ${ex.message}", ex)
+}</con:script><con:responseContent><![CDATA[<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Body>
+      <fjs1:getCustomerDetailResponseFlow xmlns:fjs1="http://soprabanking.com/amplitude">
+         <fjs1:responseHeader>
+            <fjs1:requestId>1</fjs1:requestId>
+            <fjs1:responseId>10507</fjs1:responseId>
+            <fjs1:timestamp>2023-06-26T16:17:55.66120+01:00</fjs1:timestamp>
+            <fjs1:serviceVersion>V1.0</fjs1:serviceVersion>
+            <fjs1:language>
+               <fjs1:code>${langNb}</fjs1:code>
+               <fjs1:designation>${lang}</fjs1:designation>
+            </fjs1:language>
+         </fjs1:responseHeader>
+         <fjs1:responseStatus>
+            <fjs1:statusCode>0</fjs1:statusCode>
+         </fjs1:responseStatus>
+         <fjs1:getCustomerDetailResponse>
+            <fjs1:customerCode>${cli}</fjs1:customerCode>
+            <fjs1:customerType>1</fjs1:customerType>
+            <fjs1:language>
+               <fjs1:code>${langNb}</fjs1:code>
+               <fjs1:designation>${lang}</fjs1:designation>
+            </fjs1:language>
+            <fjs1:titleCode>
+               <fjs1:code>${lib}</fjs1:code>
+               <fjs1:designation>${sext}</fjs1:designation>
+            </fjs1:titleCode>
+            <fjs1:lastname>${nom}</fjs1:lastname>
+            <fjs1:nameToReturn>${nametoreturn}</fjs1:nameToReturn>
+            <fjs1:abbreviation></fjs1:abbreviation>
+            <fjs1:freeFieldCode1>
+               <fjs1:code>30</fjs1:code>
+               <fjs1:designation>Bangui</fjs1:designation>
+            </fjs1:freeFieldCode1>
+            <fjs1:freeFieldCode2>
+               <fjs1:code>1</fjs1:code>
+               <fjs1:designation>RESIDENT</fjs1:designation>
+            </fjs1:freeFieldCode2>
+            <fjs1:freeFieldCode3>
+               <fjs1:code>9200</fjs1:code>
+               <fjs1:designation>Autres sces march. non comp. a</fjs1:designation>
+            </fjs1:freeFieldCode3>
+            <fjs1:situation>
+               <fjs1:nationalityCode>
+                  <fjs1:code>001</fjs1:code>
+                  <fjs1:designation>CENTRAFRICAINE</fjs1:designation>
+               </fjs1:nationalityCode>
+               <fjs1:countryOfResidence>
+                  <fjs1:code>001</fjs1:code>
+                  <fjs1:designation>CENTRAFRIQUE</fjs1:designation>
+               </fjs1:countryOfResidence>
+            </fjs1:situation>
+            <fjs1:specificInformation>
+               <fjs1:individualSpecInfo>
+                  <fjs1:individualGeneralInfo>
+                     <fjs1:firstname>pre500640</fjs1:firstname>
+                     <fjs1:middlename></fjs1:middlename>
+                     <fjs1:familyStatusCode>
+                        <fjs1:code>C</fjs1:code>
+                        <fjs1:designation>Celibataire</fjs1:designation>
+                     </fjs1:familyStatusCode>
+                  </fjs1:individualGeneralInfo>
+                  <fjs1:birth>
+                     <fjs1:holderSex>M</fjs1:holderSex>
+                     <fjs1:maidenName></fjs1:maidenName>
+                     <fjs1:birthDate>1975-01-01+00:00</fjs1:birthDate>
+                     <fjs1:birthCity>BANGUI</fjs1:birthCity>
+                     <fjs1:birthCounty>BANGUI</fjs1:birthCounty>
+                     <fjs1:birthRegion></fjs1:birthRegion>
+                     <fjs1:birthCountry>
+                        <fjs1:code>001</fjs1:code>
+                        <fjs1:designation>CENTRAFRIQUE</fjs1:designation>
+                     </fjs1:birthCountry>
+                     <fjs1:birthTownCode></fjs1:birthTownCode>
+                  </fjs1:birth>
+                  <fjs1:idPaper>
+                     <fjs1:type>
+                        <fjs1:code>RCN</fjs1:code>
+                        <fjs1:designation>RECIPICE CIN</fjs1:designation>
+                     </fjs1:type>
+                     <fjs1:idPaperNumber>1013/MDIC</fjs1:idPaperNumber>
+                     <fjs1:idPaperDeliveryDate>2005-03-16+00:00</fjs1:idPaperDeliveryDate>
+                     <fjs1:idPaperDeliveryPlace>BANGUI</fjs1:idPaperDeliveryPlace>
+                     <fjs1:organisationWhichDeliver></fjs1:organisationWhichDeliver>
+                     <fjs1:idPaperValidityDate>2015-03-15+00:00</fjs1:idPaperValidityDate>
+                     <fjs1:nationalIdentifier></fjs1:nationalIdentifier>
+                  </fjs1:idPaper>
+                  <fjs1:family>
+                     <fjs1:spouseType></fjs1:spouseType>
+                     <fjs1:spouseCode></fjs1:spouseCode>
+                     <fjs1:customerFamilyRelationshipCode></fjs1:customerFamilyRelationshipCode>
+                  </fjs1:family>
+                  <fjs1:otherAttributes>
+                     <fjs1:holderMotherName></fjs1:holderMotherName>
+                  </fjs1:otherAttributes>
+               </fjs1:individualSpecInfo>
+            </fjs1:specificInformation>
+            <fjs1:generalAttributes>
+               <fjs1:branchCode>
+                  <fjs1:code>00020</fjs1:code>
+                  <fjs1:designation>Agence  BANGUI</fjs1:designation>
+               </fjs1:branchCode>
+               <fjs1:customerOfficer>
+                  <fjs1:code>003</fjs1:code>
+                  <fjs1:name>TAHRI JOUTEI</fjs1:name>
+               </fjs1:customerOfficer>
+               <fjs1:qualityCode>
+                  <fjs1:code>CM</fjs1:code>
+                  <fjs1:designation>Client Moyen</fjs1:designation>
+               </fjs1:qualityCode>
+               <fjs1:taxableCustomer>true</fjs1:taxableCustomer>
+               <fjs1:internalCategoryCode>
+                  <fjs1:code>J</fjs1:code>
+                  <fjs1:designation>Annee - Mois - Jour</fjs1:designation>
+               </fjs1:internalCategoryCode>
+               <fjs1:statisticNumber></fjs1:statisticNumber>
+               <fjs1:sponsorCustomerCode></fjs1:sponsorCustomerCode>
+            </fjs1:generalAttributes>
+            <fjs1:reportingAttributes>
+               <fjs1:economicAgentCode>
+                  <fjs1:code>2303</fjs1:code>
+                  <fjs1:designation>Particuliers fonctionnaires</fjs1:designation>
+               </fjs1:economicAgentCode>
+               <fjs1:activityFieldCode>
+                  <fjs1:code>9200</fjs1:code>
+                  <fjs1:designation>Autr activite service personnl</fjs1:designation>
+               </fjs1:activityFieldCode>
+               <fjs1:gradingAgreement></fjs1:gradingAgreement>
+               <fjs1:securityIssuer></fjs1:securityIssuer>
+               <fjs1:creditInfoCentre>
+                  <fjs1:userCodewhoValidatedcustomerRelationshipRisk></fjs1:userCodewhoValidatedcustomerRelationshipRisk>
+                  <fjs1:creditInfoCentreRegistrationNumber></fjs1:creditInfoCentreRegistrationNumber>
+                  <fjs1:creditInfoCentreCodeToDeclare>2</fjs1:creditInfoCentreCodeToDeclare>
+                  <fjs1:creditInfoCentreKey>N</fjs1:creditInfoCentreKey>
+               </fjs1:creditInfoCentre>
+            </fjs1:reportingAttributes>
+            <fjs1:paymentMethods>
+               <fjs1:chequeBookFacilitySuspension>N</fjs1:chequeBookFacilitySuspension>
+               <fjs1:withdrawalOfCreditCard></fjs1:withdrawalOfCreditCard>
+            </fjs1:paymentMethods>
+            <fjs1:additionnalInformation>
+               <fjs1:deletionCode>N</fjs1:deletionCode>
+               <fjs1:userWhoCreated>AUTO</fjs1:userWhoCreated>
+               <fjs1:userWhoInitiated></fjs1:userWhoInitiated>
+               <fjs1:creationDate>2005-03-23+00:00</fjs1:creationDate>
+               <fjs1:lastModificationDate>2009-12-03+00:00</fjs1:lastModificationDate>
+               <fjs1:modificationSheetNumber>4</fjs1:modificationSheetNumber>
+               <fjs1:realTimeTransferCode>O</fjs1:realTimeTransferCode>
+            </fjs1:additionnalInformation>
+            <fjs1:addressesDetail>
+               <fjs1:customerAddressDetail>
+                  <fjs1:identifier>
+                     <fjs1:customerCode>500640</fjs1:customerCode>
+                     <fjs1:addressType>
+                        <fjs1:code>C</fjs1:code>
+                        <fjs1:designation>Adresse courrier</fjs1:designation>
+                     </fjs1:addressType>
+                  </fjs1:identifier>
+                  <fjs1:language>
+                     <fjs1:code>001</fjs1:code>
+                     <fjs1:designation>Fran</fjs1:designation>
+                  </fjs1:language>
+                  <fjs1:addressFormat>
+                     <fjs1:code>GE</fjs1:code>
+                     <fjs1:designation>Format geographique</fjs1:designation>
+                  </fjs1:addressFormat>
+                  <fjs1:addressLine1>adr1500640</fjs1:addressLine1>
+                  <fjs1:addressLine2>adr2500640</fjs1:addressLine2>
+                  <fjs1:addressLine3>adr3500640</fjs1:addressLine3>
+                  <fjs1:city>Bangui</fjs1:city>
+                  <fjs1:postalCode></fjs1:postalCode>
+                  <fjs1:deliveryOffice></fjs1:deliveryOffice>
+                  <fjs1:poBox></fjs1:poBox>
+                  <fjs1:postalSector></fjs1:postalSector>
+                  <fjs1:postalSectorDesignation></fjs1:postalSectorDesignation>
+                  <fjs1:countryCode>
+                     <fjs1:code>001</fjs1:code>
+                     <fjs1:designation>CENTRAFRIQUE</fjs1:designation>
+                  </fjs1:countryCode>
+                  <fjs1:counterCode>
+                     <fjs1:code></fjs1:code>
+                  </fjs1:counterCode>
+                  <fjs1:locker>0</fjs1:locker>
+                  <fjs1:emailAddress></fjs1:emailAddress>
+                  <fjs1:numberOfReturnMailsForWrongAddress>0</fjs1:numberOfReturnMailsForWrongAddress>
+                  <fjs1:county></fjs1:county>
+                  <fjs1:region></fjs1:region>
+               </fjs1:customerAddressDetail>
+               <fjs1:customerAddressDetail>
+                  <fjs1:identifier>
+                     <fjs1:customerCode>500640</fjs1:customerCode>
+                     <fjs1:addressType>
+                        <fjs1:code>D</fjs1:code>
+                        <fjs1:designation>Adresse declarative client</fjs1:designation>
+                     </fjs1:addressType>
+                  </fjs1:identifier>
+                  <fjs1:language>
+                     <fjs1:code>001</fjs1:code>
+                     <fjs1:designation>Fran</fjs1:designation>
+                  </fjs1:language>
+                  <fjs1:addressFormat>
+                     <fjs1:code>GE</fjs1:code>
+                     <fjs1:designation>Format geographique</fjs1:designation>
+                  </fjs1:addressFormat>
+                  <fjs1:addressLine1>adr1500640</fjs1:addressLine1>
+                  <fjs1:addressLine2>adr2500640</fjs1:addressLine2>
+                  <fjs1:addressLine3>adr3500640</fjs1:addressLine3>
+                  <fjs1:city>Bangui</fjs1:city>
+                  <fjs1:postalCode></fjs1:postalCode>
+                  <fjs1:deliveryOffice></fjs1:deliveryOffice>
+                  <fjs1:poBox></fjs1:poBox>
+                  <fjs1:postalSector></fjs1:postalSector>
+                  <fjs1:postalSectorDesignation></fjs1:postalSectorDesignation>
+                  <fjs1:countryCode>
+                     <fjs1:code>001</fjs1:code>
+                     <fjs1:designation>CENTRAFRIQUE</fjs1:designation>
+                  </fjs1:countryCode>
+                  <fjs1:counterCode>
+                     <fjs1:code></fjs1:code>
+                  </fjs1:counterCode>
+                  <fjs1:locker>0</fjs1:locker>
+                  <fjs1:emailAddress></fjs1:emailAddress>
+                  <fjs1:numberOfReturnMailsForWrongAddress>0</fjs1:numberOfReturnMailsForWrongAddress>
+                  <fjs1:county></fjs1:county>
+                  <fjs1:region></fjs1:region>
+               </fjs1:customerAddressDetail>
+            </fjs1:addressesDetail>
+            <fjs1:phoneNumbers>
+               <fjs1:customerPhoneNumber>
+                  <fjs1:customer>
+                     <fjs1:customerNumber>500640</fjs1:customerNumber>
+                     <fjs1:displayedName>rest500640</fjs1:displayedName>
+                  </fjs1:customer>
+                  <fjs1:phoneType>
+                     <fjs1:code>001</fjs1:code>
+                     <fjs1:designation>Tel 1 courrier particulier</fjs1:designation>
+                  </fjs1:phoneType>
+                  <fjs1:phoneNumber>661000000</fjs1:phoneNumber>
+               </fjs1:customerPhoneNumber>
+            </fjs1:phoneNumbers>
+            <fjs1:freeAttributesDetail>
+               <fjs1:customerFreeAttributeDetail>
+                  <fjs1:customerFreeAttributeIdentifier>
+                     <fjs1:customerCode>500640</fjs1:customerCode>
+                     <fjs1:identifier>100</fjs1:identifier>
+                  </fjs1:customerFreeAttributeIdentifier>
+                  <fjs1:additionalDataValue>
+                     <fjs1:alphanumeric>000095963361</fjs1:alphanumeric>
+                  </fjs1:additionalDataValue>
+                  <fjs1:customerFreeAttributeInfo>
+                     <fjs1:code>100</fjs1:code>
+                     <fjs1:designation>IBU CIP</fjs1:designation>
+                     <fjs1:dataFormat>A</fjs1:dataFormat>
+                     <fjs1:totalLengthIfAlpha>30</fjs1:totalLengthIfAlpha>
+                     <fjs1:managementMethod>2</fjs1:managementMethod>
+                  </fjs1:customerFreeAttributeInfo>
+               </fjs1:customerFreeAttributeDetail>
+               <fjs1:customerFreeAttributeDetail>
+                  <fjs1:customerFreeAttributeIdentifier>
+                     <fjs1:customerCode>500640</fjs1:customerCode>
+                     <fjs1:identifier>PYD</fjs1:identifier>
+                  </fjs1:customerFreeAttributeIdentifier>
+                  <fjs1:additionalDataValue>
+                     <fjs1:alphanumeric>001</fjs1:alphanumeric>
+                  </fjs1:additionalDataValue>
+                  <fjs1:typeOfLinkedAttribute>G</fjs1:typeOfLinkedAttribute>
+                  <fjs1:customerFreeAttributeInfo>
+                     <fjs1:code>PYD</fjs1:code>
+                     <fjs1:designation>PAYS DE DELIVRENCE</fjs1:designation>
+                     <fjs1:dataFormat>A</fjs1:dataFormat>
+                     <fjs1:totalLengthIfAlpha>3</fjs1:totalLengthIfAlpha>
+                     <fjs1:managementMethod>1</fjs1:managementMethod>
+                  </fjs1:customerFreeAttributeInfo>
+               </fjs1:customerFreeAttributeDetail>
+               <fjs1:customerFreeAttributeDetail>
+                  <fjs1:customerFreeAttributeIdentifier>
+                     <fjs1:customerCode>500640</fjs1:customerCode>
+                     <fjs1:identifier>PYN</fjs1:identifier>
+                  </fjs1:customerFreeAttributeIdentifier>
+                  <fjs1:additionalDataValue>
+                     <fjs1:alphanumeric>001</fjs1:alphanumeric>
+                  </fjs1:additionalDataValue>
+                  <fjs1:customerFreeAttributeInfo>
+                     <fjs1:code>PYN</fjs1:code>
+                     <fjs1:designation>PAYS DE NAISSANCE</fjs1:designation>
+                     <fjs1:dataFormat>A</fjs1:dataFormat>
+                     <fjs1:totalLengthIfAlpha>3</fjs1:totalLengthIfAlpha>
+                     <fjs1:managementMethod>1</fjs1:managementMethod>
+                  </fjs1:customerFreeAttributeInfo>
+               </fjs1:customerFreeAttributeDetail>
+            </fjs1:freeAttributesDetail>
+            <fjs1:activeProfile>
+               <fjs1:activeProfile>
+                  <fjs1:code>100</fjs1:code>
+                  <fjs1:designation>PARTICULIER</fjs1:designation>
+               </fjs1:activeProfile>
+            </fjs1:activeProfile>
+         </fjs1:getCustomerDetailResponse>
+      </fjs1:getCustomerDetailResponseFlow>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="getCustomerDetail"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
