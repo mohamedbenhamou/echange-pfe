@@ -977,35 +977,16 @@
    <soapenv:Body>
       <amp:getCustomerDetailRequestFlow>
          <amp:requestHeader>
-           <amp:requestId>${requestId}</amp:requestId>
-            <amp:serviceName>getCustomer</amp:serviceName>
-            <amp:timestamp>${timestamp}</amp:timestamp>
-            
-            <amp:userCode>MOHAMED<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:amp="http://soprabanking.com/amplitude">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <amp:getCustomerDetailRequestFlow>
-         <amp:requestHeader>
            <amp:requestId>1</amp:requestId>
             <amp:serviceName>getCustomer</amp:serviceName>
             <amp:timestamp>2023-06-26T16:17:55.66120+01:00</amp:timestamp>
             
-            <amp:userCode>NOHAILA</amp:userCode>
+            <amp:userCode>HAMZA</amp:userCode>
 
          </amp:requestHeader>
          <amp:getCustomerDetailRequest>
             <amp:customerIdentifier>
-               <amp:customerCode>500640</amp:customerCode>
-            </amp:customerIdentifier>
-         </amp:getCustomerDetailRequest>
-      </amp:getCustomerDetailRequestFlow>
-   </soapenv:Body>
-</soapenv:Envelope></amp:userCode>
-
-         </amp:requestHeader>
-         <amp:getCustomerDetailRequest>
-            <amp:customerIdentifier>
-               <amp:customerCode>500643</amp:customerCode>
+               <amp:customerCode>500642</amp:customerCode>
             </amp:customerIdentifier>
          </amp:getCustomerDetailRequest>
       </amp:getCustomerDetailRequestFlow>
